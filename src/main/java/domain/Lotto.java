@@ -18,6 +18,12 @@ public class Lotto {
         for(int lottoNum = LOTTO_MIN; lottoNum <= LOTTO_MAX; ++lottoNum){
             randomPool.add(lottoNum);
         }
+        generateLotto();
+    }
+
+    Lotto(List<Integer> numbers){
+        lottoNumbers = numbers;
+        randomPool = new ArrayList<>();
     }
 
     public void generateLotto() {
@@ -27,5 +33,19 @@ public class Lotto {
 
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
+    }
+
+    public int getOneNumber(int index) {
+        return lottoNumbers.get(index);
+    }
+
+    public boolean hasNumber(int testNumber) {
+        return lottoNumbers.contains(testNumber);
+    }
+
+    public int calculateSameNumber(Lotto testLotto) {
+        return (int) this.lottoNumbers.stream()
+                .filter(testLotto::hasNumber)
+                .count();
     }
 }
