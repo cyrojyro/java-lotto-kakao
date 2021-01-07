@@ -14,6 +14,16 @@ public class LottoStatistics {
         this.rankNumbers = rankNumbers;
     }
 
+    private static String entryToString(Map.Entry<LottoRank, BigInteger> entry) {
+        LottoRank lottoRank = entry.getKey();
+        BigInteger value = entry.getValue();
+        if (lottoRank.getDescription().isEmpty()) {
+            return "";
+        }
+        return Phrase.getLottoRewardStatement(lottoRank.getDescription(),
+                lottoRank.getReward(), value);
+    }
+
     public HashMap<LottoRank, BigInteger> getRankNumbers() {
         return rankNumbers;
     }
@@ -27,16 +37,6 @@ public class LottoStatistics {
                             .multiply(rankNumbers.get(lottoRank)));
         }
         return totalReward;
-    }
-
-    private static String entryToString(Map.Entry<LottoRank, BigInteger> entry) {
-        LottoRank lottoRank = entry.getKey();
-        BigInteger value = entry.getValue();
-        if (lottoRank.getDescription().isEmpty()) {
-            return "";
-        }
-        return Phrase.getLottoRewardStatement(lottoRank.getDescription(),
-                lottoRank.getReward(), value);
     }
 
     public BigInteger calculateEarningsRate(BigInteger buyAmount) {

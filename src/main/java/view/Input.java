@@ -10,8 +10,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Input {
-    private static final Scanner scanner = new Scanner(System.in);
     public static final String REGEX = ",";
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static int getLottoBuyAmount() {
         int amount;

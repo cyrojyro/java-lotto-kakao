@@ -25,7 +25,7 @@ public class LottoRankTest {
     }
 
     @Test
-    public void checkRankTest(){
+    public void checkRankTest() {
         assertThat(LottoRank.SECOND.checkRank(5, true)).isTrue();
         assertThat(LottoRank.SECOND.checkRank(5, false)).isFalse();
         assertThat(LottoRank.THIRD.checkRank(5, false)).isTrue();

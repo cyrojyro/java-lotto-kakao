@@ -14,23 +14,23 @@ public class LottosTest {
     private Lotto winningLotto;
 
     @BeforeEach
-    public void createLottos(){
-        winningLotto = new Lotto(Arrays.asList(1,7,8,9,10,11), 12);
+    public void createLottos() {
+        winningLotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12);
         lottos = new Lottos(
-            Arrays.asList(
-                    new Lotto(Arrays.asList(1,7,8,9,10,11), 12),
-                    new Lotto(Arrays.asList(1,7,8,9,10,11), 12),
-                    new Lotto(Arrays.asList(1,7,8,9,10,11), 12),
-                    new Lotto(Arrays.asList(1,7,8,9,10,13), 12),
-                    new Lotto(Arrays.asList(1,7,8,9,10,13), 12),
-                    new Lotto(Arrays.asList(1,7,8,9,10,13), 14),
-                    new Lotto(Arrays.asList(21,27,28,29,20,33), 12)
-            )
+                Arrays.asList(
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 12),
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 12),
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 14),
+                        new Lotto(Arrays.asList(21, 27, 28, 29, 20, 33), 12)
+                )
         );
     }
 
     @Test
-    public void calculateNumberOfRank(){
+    public void calculateNumberOfRank() {
         assertThat(lottos.calculateNumberOfRank(LottoRank.FIRST, winningLotto))
                 .isEqualTo(new BigInteger("3"));
         assertThat(lottos.calculateNumberOfRank(LottoRank.SECOND, winningLotto))
