@@ -1,14 +1,26 @@
 package domain;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Lottos {
     private final List<Lotto> lottos;
 
+    public Lottos(int buyNumber) {
+        lottos = new ArrayList<>();
+        for (int i = 0; i < buyNumber; ++i) {
+            lottos.add(new Lotto());
+        }
+    }
+
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(lottos);
     }
 
     public BigInteger calculateNumberOfRank(LottoRank lottoRank, Lotto winningLotto) {

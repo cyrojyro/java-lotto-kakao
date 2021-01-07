@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoTest {
@@ -23,14 +23,44 @@ public class LottoTest {
     @RepeatedTest(100)
     public void generateLottoTest() {
         Lotto randomLotto = new Lotto();
-        List<Integer> lottoNumbers = randomLotto.getLottoBalls();
+        LottoBalls lottoNumbers = randomLotto.getLottoBalls();
         int bonusNumber = randomLotto.getBonusBall();
         assertThat(lottoNumbers.size()).isEqualTo(Lotto.LOTTO_COUNT);
-        for (int lottoNumber : lottoNumbers) {
-            assertThat(Collections.frequency(lottoNumbers, lottoNumber)).isEqualTo(1);
+        for (int lottoNumber : lottoNumbers.getLottoNumbers()) {
+            assertThat(Collections.frequency(lottoNumbers.getLottoNumbers(),
+                    lottoNumber)).isEqualTo(1);
             assertThat(lottoNumber).isBetween(Lotto.LOTTO_MIN, Lotto.LOTTO_MAX);
         }
-        assertThat(Collections.frequency(lottoNumbers, bonusNumber)).isEqualTo(0);
+        assertThat(Collections.frequency(lottoNumbers.getLottoNumbers(),
+                bonusNumber)).isEqualTo(0);
+    }
+
+    @Test
+    public void createLottoTest_duplicate() {
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 1, 2, 3, 4, 5), 6));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6), 6));
+    }
+
+    @Test
+    public void createLottoTest_wrongSize() {
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5), 6));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6, 7), 8));
+    }
+
+    @Test
+    public void createLottoTest_wrongNumber() {
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 46), 8));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 0), 8));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6), 46));
+        assertThatIllegalArgumentException().isThrownBy(() ->
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6), 0));
     }
 
     @Test

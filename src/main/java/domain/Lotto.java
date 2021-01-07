@@ -1,30 +1,43 @@
 package domain;
 
+import text.Phrase;
 import utils.RandomGenerator;
 
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> lottoBalls;
+    public static final int LOTTO_PRICE = 1000;
     private final int bonusBall;
+    private final LottoBalls lottoBalls;
 
     public static final int LOTTO_COUNT = 6;
     public static final int LOTTO_MIN = 1;
     public static final int LOTTO_MAX = 45;
 
-    Lotto() {
+    public Lotto() {
         List<Integer> randomNumbers = RandomGenerator.generateNumbers(
                 LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT + 1);
-        lottoBalls = randomNumbers.subList(0, LOTTO_COUNT);
+        lottoBalls = new LottoBalls(randomNumbers.subList(0, LOTTO_COUNT));
         bonusBall = randomNumbers.get(LOTTO_COUNT);
     }
 
-    Lotto(List<Integer> balls, int bonusBall){
-        lottoBalls = balls;
+    public Lotto(List<Integer> balls, int bonusBall) {
+        this(new LottoBalls(balls), bonusBall);
+    }
+
+    public Lotto(LottoBalls lottoBalls, int bonusBall) {
+        this.lottoBalls = lottoBalls;
+        validateLotto(lottoBalls, bonusBall);
         this.bonusBall = bonusBall;
     }
 
-    public List<Integer> getLottoBalls() {
+    private static void validateLotto(LottoBalls balls, int bonusBall) {
+        if (balls.isIllegal(bonusBall) || bonusBall < LOTTO_MIN || bonusBall > LOTTO_MAX) {
+            throw new IllegalArgumentException(Phrase.ILLEGAL_LOTTO_ARGUMENT);
+        }
+    }
+
+    public LottoBalls getLottoBalls() {
         return lottoBalls;
     }
 
@@ -53,5 +66,10 @@ public class Lotto {
     public LottoRank findLottoRank(Lotto testLotto) {
         return LottoRank.calculateLottoRank(calculateSameBall(testLotto),
                 hasSameBonusBall(testLotto));
+    }
+
+    @Override
+    public String toString() {
+        return lottoBalls.toString();
     }
 }
