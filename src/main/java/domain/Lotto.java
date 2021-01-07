@@ -6,14 +6,15 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> randomPool;
-    private List<Integer> lottoNumbers;
+    private List<Integer> lottoBalls;
+    private int bonusBall;
 
     public static final int LOTTO_COUNT = 6;
     public static final int LOTTO_MIN = 1;
     public static final int LOTTO_MAX = 45;
 
     Lotto(){
-        lottoNumbers = new ArrayList<>();
+        lottoBalls = new ArrayList<>();
         randomPool = new ArrayList<>();
         for(int lottoNum = LOTTO_MIN; lottoNum <= LOTTO_MAX; ++lottoNum){
             randomPool.add(lottoNum);
@@ -29,24 +30,25 @@ public class Lotto {
 
     public void generateLotto() {
         Collections.shuffle(randomPool);
-        lottoNumbers = randomPool.subList(0, LOTTO_COUNT);
+        lottoBalls = randomPool.subList(0, LOTTO_COUNT);
+        bonusBall = randomPool.get(LOTTO_COUNT + 1);
     }
 
-    public List<Integer> getLottoNumbers() {
-        return lottoNumbers;
+    public List<Integer> getLottoBalls() {
+        return lottoBalls;
     }
 
-    public int getOneNumber(int index) {
-        return lottoNumbers.get(index);
+    public int getOneBall(int index) {
+        return lottoBalls.get(index);
     }
 
-    public boolean hasNumber(int testNumber) {
-        return lottoNumbers.contains(testNumber);
+    public boolean hasBall(int ball) {
+        return lottoBalls.contains(ball);
     }
 
-    public int calculateSameNumber(Lotto testLotto) {
-        return (int) this.lottoNumbers.stream()
-                .filter(testLotto::hasNumber)
+    public int calculateSameBall(Lotto testLotto) {
+        return (int) this.lottoBalls.stream()
+                .filter(testLotto::hasBall)
                 .count();
     }
 
