@@ -20,4 +20,12 @@ public class LottoRankTest {
     public void calculateLottoRankTest_rankThird() {
         assertThat(LottoRank.calculateLottoRank(5,false)).isEqualTo(LottoRank.THIRD);
     }
+
+    @Test
+    public void checkRankTest(){
+        assertThat(LottoRank.SECOND.checkRank(5, true)).isTrue();
+        assertThat(LottoRank.SECOND.checkRank(5, false)).isFalse();
+        assertThat(LottoRank.THIRD.checkRank(5, false)).isTrue();
+        assertThat(LottoRank.THIRD.checkRank(5, true)).isFalse();
+    }
 }
