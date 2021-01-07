@@ -5,11 +5,27 @@ import java.util.HashMap;
 public class LottoStatistics {
     private HashMap<LottoRank, Integer> rankNumbers;
 
-    public LottoStatistics(HashMap<LottoRank, Integer> rankNumbers) {
+    public LottoStatistics(HashMap<LottoRank, BigInteger> rankNumbers) {
         this.rankNumbers = rankNumbers;
     }
 
-    public HashMap<LottoRank, Integer> getRankNumbers(){
+    public HashMap<LottoRank, BigInteger> getRankNumbers() {
         return rankNumbers;
+    }
+
+    public BigInteger calculateTotalReward() {
+        BigInteger totalReward = new BigInteger("0");
+
+        for (LottoRank lottoRank : rankNumbers.keySet()) {
+            totalReward = totalReward.add(
+                    lottoRank.getReward()
+                            .multiply(rankNumbers.get(lottoRank)));
+        }
+        return totalReward;
+    }
+
+    public BigInteger calculateEarningsRate(BigInteger buyAmount) {
+        BigInteger ratio = calculateTotalReward().divide(buyAmount);
+        return ratio.multiply(new BigInteger("100"));
     }
 }

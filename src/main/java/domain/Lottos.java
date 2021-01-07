@@ -1,5 +1,6 @@
 package domain;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,14 +11,16 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public int calculateNumberOfRank(LottoRank lottoRank, Lotto winningLotto) {
-        return (int)lottos.stream()
-                .filter(lotto -> lottoRank.checkRank(lotto, winningLotto))
-                .count();
+    public BigInteger calculateNumberOfRank(LottoRank lottoRank, Lotto winningLotto) {
+        return new BigInteger(
+                String.valueOf(
+                        lottos.stream()
+                                .filter(lotto -> lottoRank.checkRank(lotto, winningLotto))
+                                .count()));
     }
 
-    public LottoStatistics getLottoStatistics(Lotto winningLotto){
-        HashMap<LottoRank, Integer> rankNumbers = new HashMap<>();
+    public LottoStatistics getLottoStatistics(Lotto winningLotto) {
+        HashMap<LottoRank, BigInteger> rankNumbers = new HashMap<>();
 
         for(LottoRank lottoRank: LottoRank.values()){
             rankNumbers.put(lottoRank, calculateNumberOfRank(lottoRank, winningLotto));
