@@ -22,10 +22,6 @@ public class LottoBalls {
         return count != lottoBalls.size();
     }
 
-    public int get(int index) {
-        return lottoBalls.get(index);
-    }
-
     public Stream<Integer> stream() {
         return lottoBalls.stream();
     }

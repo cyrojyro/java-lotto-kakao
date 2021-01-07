@@ -65,14 +65,12 @@ public class LottoTest {
 
     @Test
     public void hasNumberBallTest_sameBall() {
-        int testNumber = testLotto.getOneBall(1);
-        assertThat(lotto.hasBall(testNumber)).isTrue();
+        assertThat(lotto.hasBall(1)).isTrue();
     }
 
     @Test
     public void hasNumberBallTest_differentBall() {
-        int testNumber = testLotto.getOneBall(0);
-        assertThat(lotto.hasBall(testNumber)).isFalse();
+        assertThat(lotto.hasBall(2)).isFalse();
     }
 
     @Test

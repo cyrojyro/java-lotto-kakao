@@ -41,10 +41,6 @@ public class Lotto {
         return lottoBalls;
     }
 
-    public int getOneBall(int index) {
-        return lottoBalls.get(index);
-    }
-
     public boolean hasBall(int ball) {
         return lottoBalls.contains(ball);
     }
