@@ -11,7 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoTest {
-
     private Lotto lotto;
     private Lotto testLotto;
 
@@ -22,7 +21,7 @@ public class LottoTest {
     }
 
     @RepeatedTest(100)
-    public void generateLotto() {
+    public void generateLottoTest() {
         Lotto randomLotto = new Lotto();
         List<Integer> lottoNumbers = randomLotto.getLottoNumbers();
         assertThat(lottoNumbers.size()).isEqualTo(Lotto.LOTTO_COUNT);

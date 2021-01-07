@@ -21,9 +21,10 @@ public class Lotto {
         generateLotto();
     }
 
-    Lotto(List<Integer> numbers){
-        lottoNumbers = numbers;
+    Lotto(List<Integer> balls, int bonusBall){
+        lottoBalls = balls;
         randomPool = new ArrayList<>();
+        this.bonusBall = bonusBall;
     }
 
     public void generateLotto() {
@@ -47,5 +48,17 @@ public class Lotto {
         return (int) this.lottoNumbers.stream()
                 .filter(testLotto::hasNumber)
                 .count();
+    }
+
+    public boolean hasSameBonusBall(Lotto testLotto) {
+        return testLotto.bonusBall == this.bonusBall;
+    }
+
+    public int getBonusBall() {
+        return bonusBall;
+    }
+
+    public LottoRank findLottoRank(Lotto testLotto) {
+        return LottoRank.calculateLottoRank(calculateSameBall(testLotto),hasSameBonusBall(testLotto));
     }
 }
