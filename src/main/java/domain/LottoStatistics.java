@@ -1,9 +1,10 @@
 package domain;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 
 public class LottoStatistics {
-    private HashMap<LottoRank, Integer> rankNumbers;
+    private final HashMap<LottoRank, BigInteger> rankNumbers;
 
     public LottoStatistics(HashMap<LottoRank, BigInteger> rankNumbers) {
         this.rankNumbers = rankNumbers;

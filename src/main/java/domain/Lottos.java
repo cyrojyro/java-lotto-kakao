@@ -22,7 +22,7 @@ public class Lottos {
     public LottoStatistics getLottoStatistics(Lotto winningLotto) {
         HashMap<LottoRank, BigInteger> rankNumbers = new HashMap<>();
 
-        for(LottoRank lottoRank: LottoRank.values()){
+        for (LottoRank lottoRank : LottoRank.values()) {
             rankNumbers.put(lottoRank, calculateNumberOfRank(lottoRank, winningLotto));
         }
 

@@ -16,6 +16,7 @@ public enum LottoRank {
 
     private final List<Integer> rightCounts;
     private final List<Boolean> rightBonusBalls;
+    private final BigInteger reward;
 
     LottoRank(List<Integer> rightCounts, List<Boolean> rightBonusBalls, BigInteger reward) {
         this.rightCounts = rightCounts;
@@ -23,26 +24,26 @@ public enum LottoRank {
         this.reward = reward;
     }
 
-    public boolean checkRank(int count, boolean rightBonusBall){
-        return this.getRightCounts().contains(count) &&
-                this.getRightBonusBalls().contains(rightBonusBall);
-    }
-
-    public boolean checkRank(Lotto lotto, Lotto winningLotto){
-        return checkRank(lotto.calculateSameBall(winningLotto),
-                lotto.hasSameBonusBall(winningLotto));
-    }
-
     public static LottoRank calculateLottoRank(int count, boolean rightBonusBall) {
         Optional<LottoRank> result = Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.checkRank(count, rightBonusBall))
                 .findFirst();
 
-        if(result.isPresent()) {
+        if (result.isPresent()) {
             return result.get();
         }
 
         throw new IllegalStateException();
+    }
+
+    public boolean checkRank(int count, boolean rightBonusBall) {
+        return this.getRightCounts().contains(count) &&
+                this.getRightBonusBalls().contains(rightBonusBall);
+    }
+
+    public boolean checkRank(Lotto lotto, Lotto winningLotto) {
+        return checkRank(lotto.calculateSameBall(winningLotto),
+                lotto.hasSameBonusBall(winningLotto));
     }
 
     private List<Integer> getRightCounts() {
@@ -51,5 +52,9 @@ public enum LottoRank {
 
     public List<Boolean> getRightBonusBalls() {
         return rightBonusBalls;
+    }
+
+    public BigInteger getReward() {
+        return reward;
     }
 }
