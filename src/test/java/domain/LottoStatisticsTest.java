@@ -13,7 +13,7 @@ public class LottoStatisticsTest {
     private LottoStatistics lottoStatistics;
 
     @BeforeEach
-    public void createLottos() {
+    public void createLottosTest() {
         Lotto winningLotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12);
         Lottos lottos = new Lottos(
                 Arrays.asList(
@@ -22,7 +22,8 @@ public class LottoStatisticsTest {
                         new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
                         new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 12),
                         new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 12),
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 14)
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 14),
+                        new Lotto(Arrays.asList(21, 27, 28, 29, 30, 33), 12)
                 )
         );
         lottoStatistics = lottos.getLottoStatistics(winningLotto);
@@ -30,12 +31,17 @@ public class LottoStatisticsTest {
 
     @Test
     public void calculateTotalRewardTest() {
-        assertThat(lottoStatistics.calculateTotalReward()).isEqualTo(new BigInteger("6061500000"));
+        assertThat(lottoStatistics.calculateTotalReward()).isEqualTo(
+                new BigInteger("6061500000"));
     }
 
     @Test
     public void calculateEarningsRateTest() {
-        assertThat(lottoStatistics.calculateEarningsRate(new BigInteger("6000"))).isEqualTo(new BigInteger("101025000"));
-        assertThat(lottoStatistics.calculateEarningsRate(new BigInteger("6061500000"))).isEqualTo(new BigInteger("100"));
+        assertThat(lottoStatistics.calculateEarningsRate(
+                new BigInteger("6000")))
+                .isEqualTo(new BigInteger("101025000"));
+        assertThat(lottoStatistics.calculateEarningsRate(
+                new BigInteger("6061500000")))
+                .isEqualTo(new BigInteger("100"));
     }
 }

@@ -23,7 +23,8 @@ public class LottosTest {
                     new Lotto(Arrays.asList(1,7,8,9,10,11), 12),
                     new Lotto(Arrays.asList(1,7,8,9,10,13), 12),
                     new Lotto(Arrays.asList(1,7,8,9,10,13), 12),
-                    new Lotto(Arrays.asList(1,7,8,9,10,13), 14)
+                    new Lotto(Arrays.asList(1,7,8,9,10,13), 14),
+                    new Lotto(Arrays.asList(21,27,28,29,20,33), 12)
             )
         );
     }
@@ -41,7 +42,7 @@ public class LottosTest {
         assertThat(lottos.calculateNumberOfRank(LottoRank.FIFTH, winningLotto))
                 .isEqualTo(new BigInteger("0"));
         assertThat(lottos.calculateNumberOfRank(LottoRank.NONE, winningLotto))
-                .isEqualTo(new BigInteger("0"));
+                .isEqualTo(new BigInteger("1"));
     }
 
     @Test
@@ -54,7 +55,7 @@ public class LottosTest {
         trueRankNumbers.put(LottoRank.THIRD, new BigInteger("1"));
         trueRankNumbers.put(LottoRank.FOURTH, new BigInteger("0"));
         trueRankNumbers.put(LottoRank.FIFTH, new BigInteger("0"));
-        trueRankNumbers.put(LottoRank.NONE, new BigInteger("0"));
+        trueRankNumbers.put(LottoRank.NONE, new BigInteger("1"));
         assertThat(trueRankNumbers).isEqualTo(rankNumbers);
     }
 }

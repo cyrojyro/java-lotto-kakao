@@ -1,37 +1,27 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import utils.RandomGenerator;
+
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> randomPool;
-    private List<Integer> lottoBalls;
-    private int bonusBall;
+    private final List<Integer> lottoBalls;
+    private final int bonusBall;
 
     public static final int LOTTO_COUNT = 6;
     public static final int LOTTO_MIN = 1;
     public static final int LOTTO_MAX = 45;
 
-    Lotto(){
-        lottoBalls = new ArrayList<>();
-        randomPool = new ArrayList<>();
-        for(int lottoNum = LOTTO_MIN; lottoNum <= LOTTO_MAX; ++lottoNum){
-            randomPool.add(lottoNum);
-        }
-        generateLotto();
+    Lotto() {
+        List<Integer> randomNumbers = RandomGenerator.generateNumbers(
+                LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT + 1);
+        lottoBalls = randomNumbers.subList(0, LOTTO_COUNT);
+        bonusBall = randomNumbers.get(LOTTO_COUNT);
     }
 
     Lotto(List<Integer> balls, int bonusBall){
         lottoBalls = balls;
-        randomPool = new ArrayList<>();
         this.bonusBall = bonusBall;
-    }
-
-    public void generateLotto() {
-        Collections.shuffle(randomPool);
-        lottoBalls = randomPool.subList(0, LOTTO_COUNT);
-        bonusBall = randomPool.get(LOTTO_COUNT + 1);
     }
 
     public List<Integer> getLottoBalls() {
@@ -61,6 +51,7 @@ public class Lotto {
     }
 
     public LottoRank findLottoRank(Lotto testLotto) {
-        return LottoRank.calculateLottoRank(calculateSameBall(testLotto),hasSameBonusBall(testLotto));
+        return LottoRank.calculateLottoRank(calculateSameBall(testLotto),
+                hasSameBonusBall(testLotto));
     }
 }
