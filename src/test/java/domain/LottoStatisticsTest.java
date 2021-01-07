@@ -43,5 +43,8 @@ public class LottoStatisticsTest {
         assertThat(lottoStatistics.calculateEarningsRate(
                 new BigInteger("6061500000")))
                 .isEqualTo(new BigInteger("100"));
+        assertThat(lottoStatistics.calculateEarningsRate(
+                new BigInteger("12123000000")))
+                .isEqualTo(new BigInteger("50"));
     }
 }

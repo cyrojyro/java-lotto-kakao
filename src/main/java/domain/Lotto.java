@@ -6,10 +6,10 @@ import utils.RandomGenerator;
 import java.util.List;
 
 public class Lotto {
-    public static final int LOTTO_PRICE = 1000;
     private final int bonusBall;
     private final LottoBalls lottoBalls;
 
+    public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_COUNT = 6;
     public static final int LOTTO_MIN = 1;
     public static final int LOTTO_MAX = 45;

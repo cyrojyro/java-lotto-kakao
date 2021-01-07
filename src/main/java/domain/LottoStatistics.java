@@ -1,7 +1,11 @@
 package domain;
 
+import text.Phrase;
+
 import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoStatistics {
     private final HashMap<LottoRank, BigInteger> rankNumbers;
@@ -25,8 +29,29 @@ public class LottoStatistics {
         return totalReward;
     }
 
+    private static String entryToString(Map.Entry<LottoRank, BigInteger> entry) {
+        LottoRank lottoRank = entry.getKey();
+        BigInteger value = entry.getValue();
+        if (lottoRank.getDescription().isEmpty()) {
+            return "";
+        }
+        return Phrase.getLottoRewardStatement(lottoRank.getDescription(),
+                lottoRank.getReward(), value);
+    }
+
     public BigInteger calculateEarningsRate(BigInteger buyAmount) {
-        BigInteger ratio = calculateTotalReward().divide(buyAmount);
-        return ratio.multiply(new BigInteger("100"));
+        return calculateTotalReward()
+                .multiply(new BigInteger("100"))
+                .divide(buyAmount);
+    }
+
+    @Override
+    public String toString() {
+        String base = Phrase.WINNING_STATISTICS_PHRASE;
+        base += rankNumbers.entrySet().stream()
+                .map(LottoStatistics::entryToString)
+                .sorted()
+                .collect(Collectors.joining());
+        return base;
     }
 }
