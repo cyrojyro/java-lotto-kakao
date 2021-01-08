@@ -9,7 +9,7 @@ import java.util.List;
 public class RandomGenerator {
     public static List<Integer> generateNumbers(int min, int max, int count) {
         validateArguments(min, max, count);
-        List<Integer> randomPool = initRandomPoll(min, max);
+        List<Integer> randomPool = initRandomPool(min, max);
         Collections.shuffle(randomPool);
         return randomPool.subList(0, count);
     }
@@ -21,7 +21,7 @@ public class RandomGenerator {
         }
     }
 
-    private static List<Integer> initRandomPoll(int min, int max) {
+    private static List<Integer> initRandomPool(int min, int max) {
         List<Integer> randomPool = new ArrayList<>();
         for (int lottoNum = min; lottoNum <= max; ++lottoNum) {
             randomPool.add(lottoNum);

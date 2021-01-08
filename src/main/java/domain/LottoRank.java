@@ -9,25 +9,25 @@ import java.util.Optional;
 
 public enum LottoRank {
     FIRST(Arrays.asList(6), Arrays.asList(true, false),
-            new BigInteger("2000000000"), "6개 일치"),
+            2_000_000_000, "6개 일치"),
     SECOND(Arrays.asList(5), Arrays.asList(true),
-            new BigInteger("30000000"), "5개 일치, 보너스 볼 일치"),
+            30_000_000, "5개 일치, 보너스 볼 일치"),
     THIRD(Arrays.asList(5), Arrays.asList(false),
-            new BigInteger("1500000"), "5개 일치"),
+            1_500_000, "5개 일치"),
     FOURTH(Arrays.asList(4), Arrays.asList(true, false),
-            new BigInteger("50000"), "4개 일치"),
+            50_000, "4개 일치"),
     FIFTH(Arrays.asList(3), Arrays.asList(true, false),
-            new BigInteger("5000"), "3개 일치"),
+            5_000, "3개 일치"),
     NONE(Arrays.asList(0, 1, 2), Arrays.asList(true, false),
-            new BigInteger("0"), "");
+            0, "");
 
     private final List<Integer> validSameBalls;
     private final List<Boolean> validBonusBall;
-    private final BigInteger reward;
+    private final int reward;
     private final String description;
 
     LottoRank(List<Integer> validSameBalls, List<Boolean> validBonusBall,
-              BigInteger reward, String description) {
+              int reward, String description) {
         this.validSameBalls = validSameBalls;
         this.validBonusBall = validBonusBall;
         this.reward = reward;
@@ -65,7 +65,7 @@ public enum LottoRank {
     }
 
     public BigInteger getReward() {
-        return reward;
+        return BigInteger.valueOf(reward);
     }
 
     public String getDescription() {

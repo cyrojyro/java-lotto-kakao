@@ -29,14 +29,9 @@ public class LottoStatistics {
     }
 
     public BigInteger calculateTotalReward() {
-        BigInteger totalReward = new BigInteger("0");
-
-        for (LottoRank lottoRank : rankNumbers.keySet()) {
-            totalReward = totalReward.add(
-                    lottoRank.getReward()
-                            .multiply(rankNumbers.get(lottoRank)));
-        }
-        return totalReward;
+        return rankNumbers.keySet().stream()
+                .map(reward -> reward.getReward().multiply(rankNumbers.get(reward)))
+                .reduce(BigInteger.valueOf(0), BigInteger::add);
     }
 
     public BigInteger calculateEarningsRate(BigInteger buyAmount) {

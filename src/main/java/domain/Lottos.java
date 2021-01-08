@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Lottos {
-    private final List<Lotto> lottos;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public Lottos(int buyNumber) {
-        lottos = new ArrayList<>();
         for (int i = 0; i < buyNumber; ++i) {
             lottos.add(new Lotto());
         }
