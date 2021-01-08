@@ -1,6 +1,6 @@
 package domain;
 
-import text.Phrase;
+import text.Text;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -20,7 +20,7 @@ public class LottoStatistics {
         if (lottoRank.getDescription().isEmpty()) {
             return "";
         }
-        return Phrase.getLottoRewardStatement(lottoRank.getDescription(),
+        return Text.getLottoRewardStatement(lottoRank.getDescription(),
                 lottoRank.getReward(), value);
     }
 
@@ -47,7 +47,7 @@ public class LottoStatistics {
 
     @Override
     public String toString() {
-        String base = Phrase.WINNING_STATISTICS_PHRASE;
+        String base = Text.WINNING_STATISTICS_PHRASE;
         base += rankNumbers.entrySet().stream()
                 .map(LottoStatistics::entryToString)
                 .sorted()

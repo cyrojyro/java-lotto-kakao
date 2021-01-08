@@ -1,6 +1,6 @@
 package domain;
 
-import text.Phrase;
+import text.Text;
 import utils.RandomGenerator;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class Lotto {
 
     private static void validateLotto(LottoBalls balls, int bonusBall) {
         if (balls.isIllegal(bonusBall) || bonusBall < LOTTO_MIN || bonusBall > LOTTO_MAX) {
-            throw new IllegalArgumentException(Phrase.ILLEGAL_LOTTO_ARGUMENT);
+            throw new IllegalArgumentException(Text.ILLEGAL_LOTTO_ARGUMENT);
         }
     }
 

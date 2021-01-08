@@ -1,6 +1,6 @@
 package utils;
 
-import text.Phrase;
+import text.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class RandomGenerator {
     private static void validateArguments(int min, int max, int count) {
         if (min > max || count > (max - min + 1) || count <= 0) {
             throw new IllegalArgumentException(
-                    Phrase.ILLEGAL_RANDOM_GENERATOR_ARGUMENT);
+                    Text.ILLEGAL_RANDOM_GENERATOR_ARGUMENT);
         }
     }
 

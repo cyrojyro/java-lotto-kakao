@@ -3,25 +3,25 @@ package view;
 import domain.Lotto;
 import domain.LottoStatistics;
 import domain.Lottos;
-import text.Phrase;
+import text.Text;
 
 import java.math.BigInteger;
 
 public class Output {
     public static void askAmount() {
-        System.out.println(Phrase.BUY_AMOUNT_PHRASE);
+        System.out.println(Text.BUY_AMOUNT_PHRASE);
     }
 
     public static void printBuy(int buyNumber) {
-        System.out.println(buyNumber + Phrase.LOTTOS_BOUGHT_PHRASE);
+        System.out.println(buyNumber + Text.LOTTOS_BOUGHT_PHRASE);
     }
 
     public static void askPreviousWinNumber() {
-        System.out.println(Phrase.LAST_WEEK_BALLS_PHRASE);
+        System.out.println(Text.LAST_WEEK_BALLS_PHRASE);
     }
 
     public static void askPreviousWinBonus() {
-        System.out.println(Phrase.BONUS_BALL_INPUT_PHRASE);
+        System.out.println(Text.BONUS_BALL_INPUT_PHRASE);
     }
 
     public static void printLottos(Lottos lottos) {
@@ -36,7 +36,7 @@ public class Output {
     }
 
     public static void printLottoRevenue(LottoStatistics lottoStatistics, int buyAmount) {
-        System.out.println(Phrase.getRevenueStatement(
+        System.out.println(Text.getRevenueStatement(
                 lottoStatistics.calculateEarningsRate(
                         BigInteger.valueOf(buyAmount))));
     }

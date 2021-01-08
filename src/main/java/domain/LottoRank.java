@@ -1,6 +1,6 @@
 package domain;
 
-import text.Phrase;
+import text.Text;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -43,7 +43,7 @@ public enum LottoRank {
             return result.get();
         }
 
-        throw new IllegalStateException(Phrase.ILLEGAL_LOTTO_RANKING_ARGUMENT);
+        throw new IllegalStateException(Text.ILLEGAL_LOTTO_RANKING_ARGUMENT);
     }
 
     public boolean checkRank(int count, boolean validBonusBall) {

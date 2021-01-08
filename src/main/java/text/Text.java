@@ -2,7 +2,7 @@ package text;
 
 import java.math.BigInteger;
 
-public class Phrase {
+public class Text {
     // 오류 메시지
     public static final String ILLEGAL_LOTTO_RANKING_ARGUMENT = "로또 등수를 산정할 수 없습니다.";
     public static final String ILLEGAL_RANDOM_GENERATOR_ARGUMENT = "랜덤 생성 인자가 잘못되었습니다.";

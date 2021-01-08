@@ -1,7 +1,7 @@
 package view;
 
 import domain.Lotto;
-import text.Phrase;
+import text.Text;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
@@ -19,7 +19,7 @@ public class Input {
             amount = scanner.nextInt();
             scanner.nextLine();
         } catch (Exception e) {
-            throw new InputMismatchException(Phrase.ILLEGAL_INPUT);
+            throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
         validateAmount(amount);
         return getLottoSpent(amount);
@@ -31,7 +31,7 @@ public class Input {
 
     private static void validateAmount(int amount) {
         if (amount < Lotto.LOTTO_PRICE) {
-            throw new InputMismatchException(Phrase.ILLEGAL_INPUT);
+            throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
     }
 
@@ -41,7 +41,7 @@ public class Input {
             previousBonus = scanner.nextInt();
             scanner.nextLine();
         } catch (Exception e) {
-            throw new InputMismatchException(Phrase.ILLEGAL_INPUT);
+            throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
         return previousBonus;
     }
@@ -51,7 +51,7 @@ public class Input {
         try {
             lottoBalls = splitToInt(scanner.nextLine());
         } catch (Exception e) {
-            throw new InputMismatchException(Phrase.ILLEGAL_INPUT);
+            throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
         return lottoBalls;
     }
