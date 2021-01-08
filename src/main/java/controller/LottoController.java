@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Lotto;
+import domain.LottoBall;
 import domain.LottoStatistics;
 import domain.Lottos;
 import view.Input;
@@ -35,9 +36,9 @@ public class LottoController {
 
     private void setWinningLotto() {
         Output.askPreviousWinNumber();
-        List<Integer> winningNumbers = Input.getPreviousWinBalls();
+        List<LottoBall> winningNumbers = Input.getPreviousWinBalls();
         Output.askPreviousWinBonus();
-        int winningBonus = Input.getPreviousBonus();
+        LottoBall winningBonus = Input.getPreviousBonus();
         winningLotto = new Lotto(winningNumbers, winningBonus);
     }
 

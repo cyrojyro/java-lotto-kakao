@@ -1,39 +1,36 @@
 package domain;
 
 import text.Text;
-import utils.RandomGenerator;
 
 import java.util.List;
 
 public class Lotto {
     public static final int LOTTO_PRICE = 1_000;
+    public static final int LOTTO_COUNT = 6;
+    public static final int LOTTO_MIN = 1;
+    public static final int LOTTO_MAX = 45;
 
-    protected static final int LOTTO_COUNT = 6;
-    protected static final int LOTTO_MIN = 1;
-    protected static final int LOTTO_MAX = 45;
-
-    private final int bonusBall;
+    private final LottoBall bonusBall;
     private final LottoBalls lottoBalls;
 
     public Lotto() {
-        List<Integer> randomNumbers = RandomGenerator.generateNumbers(
-                LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT + 1);
+        List<LottoBall> randomNumbers = LottoBall.generateRandomLottoNumbers();
         lottoBalls = new LottoBalls(randomNumbers.subList(0, LOTTO_COUNT));
         bonusBall = randomNumbers.get(LOTTO_COUNT);
     }
 
-    public Lotto(List<Integer> balls, int bonusBall) {
+    public Lotto(List<LottoBall> balls, LottoBall bonusBall) {
         this(new LottoBalls(balls), bonusBall);
     }
 
-    public Lotto(LottoBalls lottoBalls, int bonusBall) {
+    public Lotto(LottoBalls lottoBalls, LottoBall bonusBall) {
         this.lottoBalls = lottoBalls;
         validateLotto(lottoBalls, bonusBall);
         this.bonusBall = bonusBall;
     }
 
-    private static void validateLotto(LottoBalls balls, int bonusBall) {
-        if (balls.isIllegal(bonusBall) || bonusBall < LOTTO_MIN || bonusBall > LOTTO_MAX) {
+    private static void validateLotto(LottoBalls balls, LottoBall bonusBall) {
+        if (balls.isIllegal(bonusBall) || LottoBall.isIllegalNumber(bonusBall)) {
             throw new IllegalArgumentException(Text.ILLEGAL_LOTTO_ARGUMENT);
         }
     }
@@ -42,8 +39,12 @@ public class Lotto {
         return lottoBalls;
     }
 
-    public boolean hasBall(int ball) {
+    public boolean hasBall(LottoBall ball) {
         return lottoBalls.contains(ball);
+    }
+
+    public boolean hasBall(int ball) {
+        return lottoBalls.contains(LottoBall.valueOf(ball));
     }
 
     public int calculateSameBall(Lotto winningLotto) {
@@ -56,7 +57,7 @@ public class Lotto {
         return this.hasBall(winningLotto.getBonusBall());
     }
 
-    public int getBonusBall() {
+    public LottoBall getBonusBall() {
         return bonusBall;
     }
 

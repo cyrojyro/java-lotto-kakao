@@ -6,46 +6,53 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoBalls {
-    private final List<Integer> lottoBalls;
+    private final List<LottoBall> LottoBalls;
 
-    public LottoBalls(List<Integer> lottoBalls) {
-        Collections.sort(lottoBalls);
-        this.lottoBalls = lottoBalls;
+    public LottoBalls(List<LottoBall> LottoBalls) {
+        Collections.sort(LottoBalls);
+        this.LottoBalls = LottoBalls;
     }
 
-    public boolean contains(int bonusBall) {
-        return lottoBalls.contains(bonusBall);
+    public static List<LottoBall> asList(Integer... args) {
+        List<LottoBall> LottoBalls = new ArrayList<>();
+        for (int i : args) {
+            LottoBalls.add(LottoBall.valueOf(i));
+        }
+        return LottoBalls;
+    }
+
+    public boolean contains(LottoBall bonusBall) {
+        return LottoBalls.contains(bonusBall);
     }
 
     public boolean hasDuplicate() {
-        int count = (int) lottoBalls.stream().distinct().count();
-        return count != lottoBalls.size();
+        int count = (int) LottoBalls.stream().distinct().count();
+        return count != LottoBalls.size();
     }
 
-    public Stream<Integer> stream() {
-        return lottoBalls.stream();
+    public Stream<LottoBall> stream() {
+        return LottoBalls.stream();
     }
 
     public int size() {
-        return lottoBalls.size();
+        return LottoBalls.size();
     }
 
-    public List<Integer> getLottoNumbers() {
-        return new ArrayList<>(lottoBalls);
+    public List<LottoBall> getLottoNumbers() {
+        return new ArrayList<>(LottoBalls);
     }
 
-    public boolean isIllegal(int bonusBall) {
+    public boolean isIllegal(LottoBall bonusBall) {
         return this.contains(bonusBall) || this.hasDuplicate() ||
                 this.size() != Lotto.LOTTO_COUNT || this.hasIllegalNumber();
     }
 
     public boolean hasIllegalNumber() {
-        return lottoBalls.stream().anyMatch(i ->
-                i > Lotto.LOTTO_MAX || i < Lotto.LOTTO_MIN);
+        return LottoBalls.stream().anyMatch(LottoBall::isIllegalNumber);
     }
 
     @Override
     public String toString() {
-        return lottoBalls.toString();
+        return LottoBalls.toString();
     }
 }

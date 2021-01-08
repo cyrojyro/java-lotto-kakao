@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
@@ -16,20 +15,19 @@ public class LottoTest {
 
     @BeforeEach
     public void setUpLottoTest() {
-        lotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 12), 13);
-        winningLotto = new Lotto(Arrays.asList(2, 1, 3, 4, 5, 6), 12);
+        lotto = new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 12), LottoBall.valueOf(13));
+        winningLotto = new Lotto(LottoBalls.asList(2, 1, 3, 4, 5, 6), LottoBall.valueOf(12));
     }
 
     @RepeatedTest(100)
     public void generateLottoTest() {
         Lotto randomLotto = new Lotto();
         LottoBalls lottoNumbers = randomLotto.getLottoBalls();
-        int bonusNumber = randomLotto.getBonusBall();
+        LottoBall bonusNumber = randomLotto.getBonusBall();
         assertThat(lottoNumbers.size()).isEqualTo(Lotto.LOTTO_COUNT);
-        for (int lottoNumber : lottoNumbers.getLottoNumbers()) {
+        for (LottoBall lottoBall : lottoNumbers.getLottoNumbers()) {
             assertThat(Collections.frequency(lottoNumbers.getLottoNumbers(),
-                    lottoNumber)).isEqualTo(1);
-            assertThat(lottoNumber).isBetween(Lotto.LOTTO_MIN, Lotto.LOTTO_MAX);
+                    lottoBall)).isEqualTo(1);
         }
         assertThat(Collections.frequency(lottoNumbers.getLottoNumbers(),
                 bonusNumber)).isEqualTo(0);
@@ -38,29 +36,29 @@ public class LottoTest {
     @Test
     public void createLottoTest_duplicate() {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 1, 2, 3, 4, 5), 6));
+                new Lotto(LottoBalls.asList(1, 1, 2, 3, 4, 5), LottoBall.valueOf(6)));
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6), 6));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5, 6), LottoBall.valueOf(6)));
     }
 
     @Test
     public void createLottoTest_wrongSize() {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5), 6));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5), LottoBall.valueOf(6)));
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6, 7), 8));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5, 6, 7), LottoBall.valueOf(8)));
     }
 
     @Test
     public void createLottoTest_wrongNumber() {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 46), 8));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5, 46), LottoBall.valueOf(8)));
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 0), 8));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5, 0), LottoBall.valueOf(8)));
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6), 46));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5, 6), LottoBall.valueOf(46)));
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6), 0));
+                new Lotto(LottoBalls.asList(1, 2, 3, 4, 5, 6), LottoBall.valueOf(0)));
     }
 
     @Test
@@ -95,13 +93,13 @@ public class LottoTest {
 
     @Test
     public void findLottoRankTest_rankSecond() {
-        Lotto rankSecondLotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 15), 12);
+        Lotto rankSecondLotto = new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 15), LottoBall.valueOf(12));
         assertThat(lotto.findLottoRank(rankSecondLotto)).isEqualTo(LottoRank.SECOND);
     }
 
     @Test
     public void findLottoRankTest_rankThird() {
-        Lotto rankThirdLotto = new Lotto(Arrays.asList(7, 1, 8, 9, 15, 10), 19);
+        Lotto rankThirdLotto = new Lotto(LottoBalls.asList(7, 1, 8, 9, 15, 10), LottoBall.valueOf(19));
         assertThat(lotto.findLottoRank(rankThirdLotto)).isEqualTo(LottoRank.THIRD);
     }
 }

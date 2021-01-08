@@ -1,6 +1,7 @@
 package view;
 
 import domain.Lotto;
+import domain.LottoBall;
 import text.Text;
 
 import java.util.Arrays;
@@ -35,10 +36,10 @@ public class Input {
         }
     }
 
-    public static int getPreviousBonus() {
-        int previousBonus;
+    public static LottoBall getPreviousBonus() {
+        LottoBall previousBonus;
         try {
-            previousBonus = scanner.nextInt();
+            previousBonus = LottoBall.valueOf(scanner.nextInt());
             scanner.nextLine();
         } catch (Exception e) {
             throw new InputMismatchException(Text.ILLEGAL_INPUT);
@@ -46,21 +47,22 @@ public class Input {
         return previousBonus;
     }
 
-    public static List<Integer> getPreviousWinBalls() {
-        List<Integer> lottoBalls;
+    public static List<LottoBall> getPreviousWinBalls() {
+        List<LottoBall> lottoBalls;
         try {
-            lottoBalls = splitToInt(scanner.nextLine());
+            lottoBalls = splitToLottoBalls(scanner.nextLine());
         } catch (Exception e) {
             throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
         return lottoBalls;
     }
 
-    public static List<Integer> splitToInt(String userInput) {
+    public static List<LottoBall> splitToLottoBalls(String userInput) {
         userInput = userInput.replace(" ", "");
         return Arrays.stream(
                 userInput.split(REGEX))
                 .map(Integer::valueOf)
+                .map(LottoBall::valueOf)
                 .collect(Collectors.toList());
     }
 }

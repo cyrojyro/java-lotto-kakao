@@ -15,16 +15,16 @@ public class LottosTest {
 
     @BeforeEach
     public void createLottos() {
-        winningLotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12);
+        winningLotto = new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(12));
         lottos = new Lottos(
                 Arrays.asList(
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 45), // 1
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 45), // 1
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 45), // 1
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 12), 45), // 2
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 45), // 3
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 45), // 3
-                        new Lotto(Arrays.asList(21, 27, 28, 29, 30, 33), 45) // 6
+                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
+                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
+                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
+                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 12), LottoBall.valueOf(45)), // 2
+                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 13), LottoBall.valueOf(45)), // 3
+                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 13), LottoBall.valueOf(45)), // 3
+                        new Lotto(LottoBalls.asList(21, 27, 28, 29, 30, 33), LottoBall.valueOf(45)) // 6
                 )
         );
     }
