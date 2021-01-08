@@ -53,7 +53,7 @@ public enum LottoRank {
 
     public boolean checkRank(Lotto lotto, Lotto winningLotto) {
         return checkRank(lotto.calculateSameBall(winningLotto),
-                lotto.hasSameBonusBall(winningLotto));
+                lotto.hasBonusBall(winningLotto));
     }
 
     private List<Integer> getValidSameBalls() {

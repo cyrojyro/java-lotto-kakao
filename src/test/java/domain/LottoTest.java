@@ -12,12 +12,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class LottoTest {
     private Lotto lotto;
-    private Lotto testLotto;
+    private Lotto winningLotto;
 
     @BeforeEach
     public void setUpLottoTest() {
-        lotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12);
-        testLotto = new Lotto(Arrays.asList(2, 1, 3, 4, 5, 6), 12);
+        lotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 12), 13);
+        winningLotto = new Lotto(Arrays.asList(2, 1, 3, 4, 5, 6), 12);
     }
 
     @RepeatedTest(100)
@@ -75,22 +75,22 @@ public class LottoTest {
 
     @Test
     public void calculateSameBallTest_success() {
-        assertThat(lotto.calculateSameBall(testLotto)).isEqualTo(1);
+        assertThat(lotto.calculateSameBall(winningLotto)).isEqualTo(1);
     }
 
     @Test
     public void calculateSameBallTest_fail() {
-        assertThat(lotto.calculateSameBall(testLotto)).isNotEqualTo(4);
+        assertThat(lotto.calculateSameBall(winningLotto)).isNotEqualTo(4);
     }
 
     @Test
-    public void hasSameBonusBallTest() {
-        assertThat(lotto.hasSameBonusBall(testLotto)).isTrue();
+    public void hasBonusBallTest() {
+        assertThat(lotto.hasBonusBall(winningLotto)).isTrue();
     }
 
     @Test
     public void findLottoRankTest_rankNone() {
-        assertThat(lotto.findLottoRank(testLotto)).isEqualTo(LottoRank.NONE);
+        assertThat(lotto.findLottoRank(winningLotto)).isEqualTo(LottoRank.NONE);
     }
 
     @Test

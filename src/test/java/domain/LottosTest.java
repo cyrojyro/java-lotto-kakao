@@ -18,13 +18,13 @@ public class LottosTest {
         winningLotto = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12);
         lottos = new Lottos(
                 Arrays.asList(
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 12),
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 12),
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 12),
-                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 14),
-                        new Lotto(Arrays.asList(21, 27, 28, 29, 20, 33), 12)
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 45), // 1
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 45), // 1
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11), 45), // 1
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 12), 45), // 2
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 45), // 3
+                        new Lotto(Arrays.asList(1, 7, 8, 9, 10, 13), 45), // 3
+                        new Lotto(Arrays.asList(21, 27, 28, 29, 30, 33), 45) // 6
                 )
         );
     }
@@ -34,9 +34,9 @@ public class LottosTest {
         assertThat(lottos.calculateNumberOfRank(LottoRank.FIRST, winningLotto))
                 .isEqualTo(new BigInteger("3"));
         assertThat(lottos.calculateNumberOfRank(LottoRank.SECOND, winningLotto))
-                .isEqualTo(new BigInteger("2"));
-        assertThat(lottos.calculateNumberOfRank(LottoRank.THIRD, winningLotto))
                 .isEqualTo(new BigInteger("1"));
+        assertThat(lottos.calculateNumberOfRank(LottoRank.THIRD, winningLotto))
+                .isEqualTo(new BigInteger("2"));
         assertThat(lottos.calculateNumberOfRank(LottoRank.FOURTH, winningLotto))
                 .isEqualTo(new BigInteger("0"));
         assertThat(lottos.calculateNumberOfRank(LottoRank.FIFTH, winningLotto))
@@ -51,8 +51,8 @@ public class LottosTest {
         HashMap<LottoRank, BigInteger> rankNumbers = lottoStatistics.getRankNumbers();
         HashMap<LottoRank, BigInteger> trueRankNumbers = new HashMap<>();
         trueRankNumbers.put(LottoRank.FIRST, new BigInteger("3"));
-        trueRankNumbers.put(LottoRank.SECOND, new BigInteger("2"));
-        trueRankNumbers.put(LottoRank.THIRD, new BigInteger("1"));
+        trueRankNumbers.put(LottoRank.SECOND, new BigInteger("1"));
+        trueRankNumbers.put(LottoRank.THIRD, new BigInteger("2"));
         trueRankNumbers.put(LottoRank.FOURTH, new BigInteger("0"));
         trueRankNumbers.put(LottoRank.FIFTH, new BigInteger("0"));
         trueRankNumbers.put(LottoRank.NONE, new BigInteger("1"));

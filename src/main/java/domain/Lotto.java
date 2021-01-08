@@ -44,23 +44,23 @@ public class Lotto {
         return lottoBalls.contains(ball);
     }
 
-    public int calculateSameBall(Lotto testLotto) {
+    public int calculateSameBall(Lotto winningLotto) {
         return (int) this.lottoBalls.stream()
-                .filter(testLotto::hasBall)
+                .filter(winningLotto::hasBall)
                 .count();
     }
 
-    public boolean hasSameBonusBall(Lotto testLotto) {
-        return testLotto.bonusBall == this.bonusBall;
+    public boolean hasBonusBall(Lotto winningLotto) {
+        return this.hasBall(winningLotto.getBonusBall());
     }
 
     public int getBonusBall() {
         return bonusBall;
     }
 
-    public LottoRank findLottoRank(Lotto testLotto) {
-        return LottoRank.calculateLottoRank(calculateSameBall(testLotto),
-                hasSameBonusBall(testLotto));
+    public LottoRank findLottoRank(Lotto winningLotto) {
+        return LottoRank.calculateLottoRank(calculateSameBall(winningLotto),
+                hasBonusBall(winningLotto));
     }
 
     @Override
