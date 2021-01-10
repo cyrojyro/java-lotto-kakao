@@ -44,17 +44,17 @@ public class Lotto {
     }
 
     public boolean hasBall(int ball) {
-        return lottoBalls.contains(LottoBall.valueOf(ball));
+        return hasBall(LottoBall.valueOf(ball));
     }
 
     public int calculateSameBall(Lotto winningLotto) {
-        return (int) this.lottoBalls.stream()
+        return (int) lottoBalls.getLottoNumbers().stream()
                 .filter(winningLotto::hasBall)
                 .count();
     }
 
     public boolean hasBonusBall(Lotto winningLotto) {
-        return this.hasBall(winningLotto.getBonusBall());
+        return hasBall(winningLotto.getBonusBall());
     }
 
     public LottoBall getBonusBall() {

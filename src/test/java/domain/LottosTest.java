@@ -1,5 +1,6 @@
 package domain;
 
+import domain.helper.LottoBallsUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,16 +16,16 @@ public class LottosTest {
 
     @BeforeEach
     public void createLottos() {
-        winningLotto = new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(12));
+        winningLotto = new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(12));
         lottos = new Lottos(
                 Arrays.asList(
-                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
-                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
-                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
-                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 12), LottoBall.valueOf(45)), // 2
-                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 13), LottoBall.valueOf(45)), // 3
-                        new Lotto(LottoBalls.asList(1, 7, 8, 9, 10, 13), LottoBall.valueOf(45)), // 3
-                        new Lotto(LottoBalls.asList(21, 27, 28, 29, 30, 33), LottoBall.valueOf(45)) // 6
+                        new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
+                        new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
+                        new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 11), LottoBall.valueOf(45)), // 1
+                        new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 12), LottoBall.valueOf(45)), // 2
+                        new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 13), LottoBall.valueOf(45)), // 3
+                        new Lotto(LottoBallsUtil.asList(1, 7, 8, 9, 10, 13), LottoBall.valueOf(45)), // 3
+                        new Lotto(LottoBallsUtil.asList(21, 27, 28, 29, 30, 33), LottoBall.valueOf(45)) // 6
                 )
         );
     }

@@ -2,7 +2,6 @@ package domain;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum LottoRank {
     FIRST(6, BonusState.IRRELEVANT,
@@ -32,11 +31,10 @@ public enum LottoRank {
     }
 
     public static LottoRank calculateLottoRank(int count, boolean validBonusBall) {
-        Optional<LottoRank> result = Arrays.stream(LottoRank.values())
+        return Arrays.stream(LottoRank.values())
                 .filter(lottoRank -> lottoRank.checkRank(count, validBonusBall))
-                .findFirst();
-
-        return result.orElse(LottoRank.NONE);
+                .findFirst()
+                .orElse(LottoRank.NONE);
     }
 
     public boolean checkRank(int count, boolean validBonusBall) {

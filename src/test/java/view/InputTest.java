@@ -1,6 +1,6 @@
 package view;
 
-import domain.LottoBalls;
+import domain.helper.LottoBallsUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -10,9 +10,9 @@ public class InputTest {
     @Test
     public void splitToIntTest() {
         assertThat(Input.splitToLottoBalls("1,2,3"))
-                .isEqualTo(LottoBalls.asList(1, 2, 3));
+                .isEqualTo(LottoBallsUtil.asList(1, 2, 3));
         assertThat(Input.splitToLottoBalls(" 1, 2  ,3,4,5  ,6"))
-                .isEqualTo(LottoBalls.asList(1, 2, 3, 4, 5, 6));
+                .isEqualTo(LottoBallsUtil.asList(1, 2, 3, 4, 5, 6));
     }
 
     @Test
