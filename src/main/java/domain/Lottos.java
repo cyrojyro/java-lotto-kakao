@@ -18,6 +18,13 @@ public class Lottos {
         this.lottos = lottos;
     }
 
+    public Lottos(Lottos lottos1, Lottos lottos2) {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.addAll(lottos1.getLottos());
+        lottos.addAll(lottos2.getLottos());
+        this.lottos = lottos;
+    }
+
     public List<Lotto> getLottos() {
         return new ArrayList<>(lottos);
     }

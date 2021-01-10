@@ -12,8 +12,16 @@ public class Output {
         System.out.println(Text.BUY_AMOUNT_PHRASE);
     }
 
-    public static void printBuy(int buyNumber) {
-        System.out.println(buyNumber + Text.LOTTOS_BOUGHT_PHRASE);
+    public static void askManualNumber() {
+        System.out.println(Text.MANUAL_BUY_PHRASE);
+    }
+
+    public static void askManualLotto() {
+        System.out.println(Text.MANUAL_LOTTO_PHRASE);
+    }
+
+    public static void printBuy(int manualBuyNumber, int autoBuyNumber) {
+        System.out.println(Text.getBuyStatement(manualBuyNumber, autoBuyNumber));
     }
 
     public static void askPreviousWinNumber() {
@@ -28,7 +36,6 @@ public class Output {
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto);
         }
-        System.out.println();
     }
 
     public static void printLottoStatistics(LottoStatistics lottoStatistics) {
