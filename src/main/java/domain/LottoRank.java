@@ -59,9 +59,9 @@ public enum LottoRank {
         NEED_TRUE, NEED_FALSE, IRRELEVANT
     }
 
-    public boolean checkRank(Lotto lotto, Lotto winningLotto) {
+    public boolean checkRank(Lotto lotto, WinningLotto winningLotto) {
         return checkRank(lotto.calculateSameBall(winningLotto),
-                lotto.hasBonusBall(winningLotto));
+                lotto.hasBonusBall(winningLotto.getBonusBall()));
     }
 
     public BigInteger getReward() {

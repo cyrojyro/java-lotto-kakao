@@ -2,6 +2,7 @@ package view;
 
 import domain.Lotto;
 import domain.LottoBall;
+import domain.LottoBalls;
 import text.Text;
 
 import java.util.Arrays;
@@ -47,14 +48,14 @@ public class Input {
         return previousBonus;
     }
 
-    public static List<LottoBall> getPreviousWinBalls() {
+    public static LottoBalls getLottoBalls() {
         List<LottoBall> lottoBalls;
         try {
             lottoBalls = splitToLottoBalls(scanner.nextLine());
         } catch (Exception e) {
             throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
-        return lottoBalls;
+        return new LottoBalls(lottoBalls);
     }
 
     public static List<LottoBall> splitToLottoBalls(String userInput) {

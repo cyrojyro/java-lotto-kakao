@@ -26,12 +26,8 @@ public class LottoBall implements Comparable<LottoBall> {
         return randomPool.subList(0, Lotto.LOTTO_COUNT + 1);
     }
 
-    public static boolean isIllegalNumber(int number) {
+    private static boolean isIllegalNumber(int number) {
         return number > Lotto.LOTTO_MAX || number < Lotto.LOTTO_MIN;
-    }
-
-    public static boolean isIllegalNumber(LottoBall lottoBall) {
-        return isIllegalNumber(lottoBall.getNumber());
     }
 
     public static LottoBall valueOf(int number) {

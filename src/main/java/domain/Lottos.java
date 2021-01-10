@@ -22,7 +22,7 @@ public class Lottos {
         return new ArrayList<>(lottos);
     }
 
-    public BigInteger calculateNumberOfRank(LottoRank lottoRank, Lotto winningLotto) {
+    public BigInteger calculateNumberOfRank(LottoRank lottoRank, WinningLotto winningLotto) {
         return new BigInteger(
                 String.valueOf(
                         lottos.stream()
@@ -30,7 +30,7 @@ public class Lottos {
                                 .count()));
     }
 
-    public LottoStatistics getLottoStatistics(Lotto winningLotto) {
+    public LottoStatistics getLottoStatistics(WinningLotto winningLotto) {
         HashMap<LottoRank, BigInteger> rankNumbers = new HashMap<>();
 
         for (LottoRank lottoRank : LottoRank.values()) {

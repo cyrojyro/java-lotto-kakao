@@ -1,7 +1,5 @@
 package domain;
 
-import text.Text;
-
 import java.util.List;
 
 public class Lotto {
@@ -10,29 +8,19 @@ public class Lotto {
     protected static final int LOTTO_MIN = 1;
     protected static final int LOTTO_MAX = 45;
 
-    private final LottoBall bonusBall;
-    private final LottoBalls lottoBalls;
+    protected final LottoBalls lottoBalls;
 
     public Lotto() {
         List<LottoBall> randomNumbers = LottoBall.generateRandomLottoNumbers();
         lottoBalls = new LottoBalls(randomNumbers.subList(0, LOTTO_COUNT));
-        bonusBall = randomNumbers.get(LOTTO_COUNT);
     }
 
-    public Lotto(List<LottoBall> balls, LottoBall bonusBall) {
-        this(new LottoBalls(balls), bonusBall);
+    public Lotto(List<LottoBall> balls) {
+        this(new LottoBalls(balls));
     }
 
-    public Lotto(LottoBalls lottoBalls, LottoBall bonusBall) {
+    public Lotto(LottoBalls lottoBalls) {
         this.lottoBalls = lottoBalls;
-        validateLotto(lottoBalls, bonusBall);
-        this.bonusBall = bonusBall;
-    }
-
-    private static void validateLotto(LottoBalls balls, LottoBall bonusBall) {
-        if (balls.isIllegal(bonusBall) || LottoBall.isIllegalNumber(bonusBall)) {
-            throw new IllegalArgumentException(Text.ILLEGAL_LOTTO_ARGUMENT);
-        }
     }
 
     public LottoBalls getLottoBalls() {
@@ -47,23 +35,19 @@ public class Lotto {
         return hasBall(LottoBall.valueOf(ball));
     }
 
-    public int calculateSameBall(Lotto winningLotto) {
+    public int calculateSameBall(Lotto lotto) {
         return (int) lottoBalls.getLottoNumbers().stream()
-                .filter(winningLotto::hasBall)
+                .filter(lotto::hasBall)
                 .count();
     }
 
-    public boolean hasBonusBall(Lotto winningLotto) {
-        return hasBall(winningLotto.getBonusBall());
+    public boolean hasBonusBall(LottoBall lottoBall) {
+        return hasBall(lottoBall);
     }
 
-    public LottoBall getBonusBall() {
-        return bonusBall;
-    }
-
-    public LottoRank findLottoRank(Lotto winningLotto) {
+    public LottoRank findLottoRank(WinningLotto winningLotto) {
         return LottoRank.calculateLottoRank(calculateSameBall(winningLotto),
-                hasBonusBall(winningLotto));
+                hasBonusBall(winningLotto.getBonusBall()));
     }
 
     @Override
