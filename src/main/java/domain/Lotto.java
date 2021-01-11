@@ -15,10 +15,6 @@ public class Lotto {
         lottoBalls = new LottoBalls(randomNumbers.subList(0, LOTTO_COUNT));
     }
 
-    public Lotto(List<LottoBall> balls) {
-        this(new LottoBalls(balls));
-    }
-
     public Lotto(LottoBalls lottoBalls) {
         this.lottoBalls = lottoBalls;
     }

@@ -10,11 +10,11 @@ public class LottoBallsTest {
     @Test
     public void hasDuplicateTest_isTrue() {
         assertThatIllegalArgumentException().isThrownBy(() ->
-                new LottoBalls(LottoBallsUtil.asList(1, 2, 3, 4, 5, 5)));
+                LottoBallsUtil.asList(1, 2, 3, 4, 5, 5));
     }
 
     @Test
     public void hasDuplicateTest_isFalse() {
-        assertThat(new LottoBalls(LottoBallsUtil.asList(1, 2, 3, 4, 5, 6))).isNotNull();
+        assertThat(LottoBallsUtil.asList(1, 2, 3, 4, 5, 6)).isNotNull();
     }
 }

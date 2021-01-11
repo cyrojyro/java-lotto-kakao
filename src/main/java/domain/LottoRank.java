@@ -29,16 +29,12 @@ public enum LottoRank {
 
     public boolean checkRank(int count, boolean hasBonusBall) {
         if (this.bonusState == BonusState.IRRELEVANT) {
-            return this.getSameBallNumber() == count;
+            return sameBallNumber == count;
         }
         if (this.bonusState == BonusState.NEED_TRUE) {
-            return this.getSameBallNumber() == count && hasBonusBall;
+            return sameBallNumber == count && hasBonusBall;
         }
-        return this.getSameBallNumber() == count && !hasBonusBall;
-    }
-
-    private int getSameBallNumber() {
-        return sameBallNumber;
+        return sameBallNumber == count && !hasBonusBall;
     }
 
     public int getReward() {

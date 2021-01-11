@@ -1,16 +1,17 @@
 package domain.helper;
 
 import domain.LottoBall;
+import domain.LottoBalls;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoBallsUtil {
-    public static List<LottoBall> asList(Integer... args) {
-        List<LottoBall> LottoBalls = new ArrayList<>();
+    public static LottoBalls asList(Integer... args) {
+        List<LottoBall> lottoBalls = new ArrayList<>();
         for (int i : args) {
-            LottoBalls.add(LottoBall.valueOf(i));
+            lottoBalls.add(LottoBall.valueOf(i));
         }
-        return LottoBalls;
+        return new LottoBalls(lottoBalls);
     }
 }
