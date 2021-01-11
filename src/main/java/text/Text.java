@@ -25,7 +25,7 @@ public class Text {
     }
 
     public static String getLottoRewardStatement(String description,
-                                                 BigInteger reward, BigInteger value) {
+                                                 BigInteger reward, Integer value) {
         return description + " (" + reward + "원) - " + value + "개\n";
     }
 }

@@ -8,15 +8,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoStatistics {
-    private final HashMap<LottoRank, BigInteger> rankNumbers;
+    private final HashMap<LottoRank, Integer> rankNumbers;
 
-    public LottoStatistics(HashMap<LottoRank, BigInteger> rankNumbers) {
+    public LottoStatistics(HashMap<LottoRank, Integer> rankNumbers) {
         this.rankNumbers = rankNumbers;
     }
 
-    private static String entryToString(Map.Entry<LottoRank, BigInteger> entry) {
+    private static String entryToString(Map.Entry<LottoRank, Integer> entry) {
         LottoRank lottoRank = entry.getKey();
-        BigInteger value = entry.getValue();
+        Integer value = entry.getValue();
         if (lottoRank.getDescription().isEmpty()) {
             return "";
         }
@@ -24,18 +24,20 @@ public class LottoStatistics {
                 lottoRank.getReward(), value);
     }
 
-    public HashMap<LottoRank, BigInteger> getRankNumbers() {
+    public HashMap<LottoRank, Integer> getRankNumbers() {
         return rankNumbers;
     }
 
     public BigInteger calculateTotalReward() {
         return rankNumbers.keySet().stream()
-                .map(reward -> reward.getReward().multiply(rankNumbers.get(reward)))
+                .map(reward -> reward.getReward().
+                        multiply(BigInteger.valueOf(rankNumbers.get(reward))))
                 .reduce(BigInteger.valueOf(0), BigInteger::add);
     }
 
     public BigInteger calculateEarningsRate(BigInteger buyAmount) {
         return calculateTotalReward()
+                // % 단위로 변환하기 위해 100곱
                 .multiply(new BigInteger("100"))
                 .divide(buyAmount);
     }
