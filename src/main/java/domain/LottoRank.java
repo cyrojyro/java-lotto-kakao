@@ -1,7 +1,5 @@
 package domain;
 
-import java.math.BigInteger;
-
 public enum LottoRank {
     FIRST(6, BonusState.IRRELEVANT,
             2_000_000_000, "6개 일치"),
@@ -43,15 +41,15 @@ public enum LottoRank {
         return sameBallNumber;
     }
 
-    enum BonusState {
-        NEED_TRUE, NEED_FALSE, IRRELEVANT
-    }
-
-    public BigInteger getReward() {
-        return BigInteger.valueOf(reward);
+    public int getReward() {
+        return reward;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    enum BonusState {
+        NEED_TRUE, NEED_FALSE, IRRELEVANT
     }
 }

@@ -30,7 +30,7 @@ public class LottoStatistics {
 
     public BigInteger calculateTotalReward() {
         return rankNumbers.keySet().stream()
-                .map(reward -> reward.getReward().
+                .map(reward -> BigInteger.valueOf(reward.getReward()).
                         multiply(BigInteger.valueOf(rankNumbers.get(reward))))
                 .reduce(BigInteger.valueOf(0), BigInteger::add);
     }

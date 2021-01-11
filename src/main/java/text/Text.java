@@ -24,8 +24,7 @@ public class Text {
         return "총 수익률은 " + revenue + "% 입니다.";
     }
 
-    public static String getLottoRewardStatement(String description,
-                                                 BigInteger reward, Integer value) {
+    public static String getLottoRewardStatement(String description, int reward, int value) {
         return description + " (" + reward + "원) - " + value + "개\n";
     }
 }
