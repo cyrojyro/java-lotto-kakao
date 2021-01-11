@@ -1,7 +1,6 @@
 package domain;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 
 public enum LottoRank {
     FIRST(6, BonusState.IRRELEVANT,
@@ -30,13 +29,6 @@ public enum LottoRank {
         this.description = description;
     }
 
-    public static LottoRank calculateLottoRank(int count, boolean validBonusBall) {
-        return Arrays.stream(LottoRank.values())
-                .filter(lottoRank -> lottoRank.checkRank(count, validBonusBall))
-                .findFirst()
-                .orElse(LottoRank.NONE);
-    }
-
     public boolean checkRank(int count, boolean validBonusBall) {
         if (this.getBonusBallState() == BonusState.IRRELEVANT) {
             return this.getSameBallNumber() == count;
@@ -57,11 +49,6 @@ public enum LottoRank {
 
     enum BonusState {
         NEED_TRUE, NEED_FALSE, IRRELEVANT
-    }
-
-    public boolean checkRank(Lotto lotto, WinningLotto winningLotto) {
-        return checkRank(lotto.calculateSameBall(winningLotto),
-                lotto.hasBonusBall(winningLotto.getBonusBall()));
     }
 
     public BigInteger getReward() {

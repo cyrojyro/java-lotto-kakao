@@ -55,23 +55,4 @@ public class LottoTest {
     public void hasBonusBallTest() {
         assertThat(lotto.hasBonusBall(winningLotto.getBonusBall())).isTrue();
     }
-
-    @Test
-    public void findLottoRankTest_rankNone() {
-        assertThat(lotto.findLottoRank(winningLotto)).isEqualTo(LottoRank.NONE);
-    }
-
-    @Test
-    public void findLottoRankTest_rankSecond() {
-        WinningLotto rankSecondLotto = new WinningLotto(
-                LottoBallsUtil.asList(1, 7, 8, 9, 10, 15), LottoBall.valueOf(12));
-        assertThat(lotto.findLottoRank(rankSecondLotto)).isEqualTo(LottoRank.SECOND);
-    }
-
-    @Test
-    public void findLottoRankTest_rankThird() {
-        WinningLotto rankThirdLotto = new WinningLotto(
-                LottoBallsUtil.asList(7, 1, 8, 9, 15, 10), LottoBall.valueOf(19));
-        assertThat(lotto.findLottoRank(rankThirdLotto)).isEqualTo(LottoRank.THIRD);
-    }
 }

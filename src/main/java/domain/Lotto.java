@@ -45,11 +45,6 @@ public class Lotto {
         return hasBall(lottoBall);
     }
 
-    public LottoRank findLottoRank(WinningLotto winningLotto) {
-        return LottoRank.calculateLottoRank(calculateSameBall(winningLotto),
-                hasBonusBall(winningLotto.getBonusBall()));
-    }
-
     @Override
     public String toString() {
         return lottoBalls.toString();
