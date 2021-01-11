@@ -17,34 +17,30 @@ public enum LottoRank {
             0, "");
 
     private final int sameBallNumber;
-    private final BonusState bonusStateBallState;
+    private final BonusState bonusState;
     private final int reward;
     private final String description;
 
-    LottoRank(int sameBallNumber, BonusState bonusStateBallState,
+    LottoRank(int sameBallNumber, BonusState bonusState,
               int reward, String description) {
         this.sameBallNumber = sameBallNumber;
-        this.bonusStateBallState = bonusStateBallState;
+        this.bonusState = bonusState;
         this.reward = reward;
         this.description = description;
     }
 
-    public boolean checkRank(int count, boolean validBonusBall) {
-        if (this.getBonusBallState() == BonusState.IRRELEVANT) {
+    public boolean checkRank(int count, boolean hasBonusBall) {
+        if (this.bonusState == BonusState.IRRELEVANT) {
             return this.getSameBallNumber() == count;
         }
-        if (this.getBonusBallState() == BonusState.NEED_TRUE) {
-            return this.getSameBallNumber() == count && validBonusBall;
+        if (this.bonusState == BonusState.NEED_TRUE) {
+            return this.getSameBallNumber() == count && hasBonusBall;
         }
-        return this.getSameBallNumber() == count && !validBonusBall;
+        return this.getSameBallNumber() == count && !hasBonusBall;
     }
 
     private int getSameBallNumber() {
         return sameBallNumber;
-    }
-
-    public BonusState getBonusBallState() {
-        return bonusStateBallState;
     }
 
     enum BonusState {

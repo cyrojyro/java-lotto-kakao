@@ -49,8 +49,8 @@ public class Input {
         return amount - amount % Lotto.LOTTO_PRICE;
     }
 
-    private static void validateAmount(int amount) {
-        if (amount < Lotto.LOTTO_PRICE) {
+    private static void validateAmount(int allowedMaxAmount) {
+        if (allowedMaxAmount < Lotto.LOTTO_PRICE) {
             throw new InputMismatchException(Text.ILLEGAL_INPUT);
         }
     }
